@@ -1,4 +1,4 @@
-# wintersoldier
+# Winter soldier project
 
 Bionic Arm Using Machine Learning
 

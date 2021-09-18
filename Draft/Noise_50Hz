@@ -1,0 +1,23 @@
+Electromagnetic Noise
+  + 60Hz or 50Hz radiation from Power Sources. (Power Line Interface)
+  + Notch Filter
+  + Harmonic (50, 100, 200, 400, etc...)
+ 
+ fs = 1000 [Hz]
+ fc = 50 [Hz]
+ wc = 2 * 3.14 * fc = 2 * 3.14 * 50 = approx. 314.2 [rad * s^-1]
+ Normalized frequency = (wc / fs) = approx. 0.3142 [rad * sample^-1] = wn
+ z = e^(j * wn)
+ 
+ Transfer  funtion:
+ H(z) = (z - (e^(j * wn)))(z - (e^-(j * wn)))
+ H(z) = z^2 - z(e^(j * wn) + e^-(j * wn)) + (e^(j * wn))(e^-(j * wn))
+ H(z) = z^2 - 2z(cos(wn)) + 1
+ H(z) = (z^2 - 2z(cos(wn)) + 1) / (z^2)
+ H(z) = 1 - 2cos(wn) * z^-1 + z^-2
+ 
+ Normalization: 
+ wn(Normalized frequency) = approx. 0.3142 [rad * sample^-1]
+ H(1) = 1 - 2cos(0.3142) + 1 = 2 - 2cos(0.3142) = approx. 0.09791
+ Hn(z) = H(z) / H(1) = (1 - 1.9021 * z^-1 + z^-2) / 0.09791
+ Hn(z) = 10.21346 - 19.42702 * z^-1 + 10.21346 * z^-2

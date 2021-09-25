@@ -13,6 +13,8 @@ float sensing() {
       mav = mav / 100;
       return mav;
     }
+    else
+      continue;
   }
 }
 

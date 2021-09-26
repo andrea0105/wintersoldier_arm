@@ -4,13 +4,13 @@ void setup() {
 
 float sensing() {
   float mav = 0;
-  for (int i = 0; i < 100; i++)
+  for (int i = 0; i < 1000; i++)
   {
     float emg = analogRead(A0);
     mav += emg;
-    if (i == 99)
+    if (i == 999)
     {
-      mav = mav / 100;
+      mav = mav / (i+1);
       return mav;
     }
     else

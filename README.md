@@ -7,4 +7,4 @@ Function Desciption:
   + Signal Processing
   + Pattern Recognition
   + Drive Servos
-  + Fall down detection
+  + Voice Recognition

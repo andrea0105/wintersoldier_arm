@@ -51,14 +51,14 @@ int main(void)
 	FILE *fp;
 	for (int i = 0; i < 1000; i++)
 	{
-		temp += read_adc(ADC_CH);
+		temp += abs(read_adc(ADC_CH));
 		delay(1);
 	}
 	int ref_value = temp / 1000;
 	temp = 0;
 	while(1)
 	{
-		int current_value = read_adc(ADC_CH);
+		int current_value = abs(read_adc(ADC_CH));
 		fopen_s(&fp, FNAME, "w");
 
 		if ((2*re_value) <= current_value)
@@ -67,7 +67,7 @@ int main(void)
 			{
 				for (int k = 0; k < 100; k++)
 				{
-					temp += read_adc(ADC_CH);
+					temp += abs(read_adc(ADC_CH));
 				}
 				MAV[index][j] = temp / 100;
 				fprintf(fp, "%d ", MAV[index][j]);

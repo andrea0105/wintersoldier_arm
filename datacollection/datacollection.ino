@@ -17,7 +17,7 @@ void loop() {
   }
   n += 1;
   Serial.println("%d[s]",n);
-  if (n == 100S) {
+  if (n == 100) {
    Serial.println('%'); 
   }
 }

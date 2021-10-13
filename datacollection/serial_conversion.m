@@ -1,9 +1,13 @@
 clc
 delete(instrfindall)
-s = serialport('COM6');
+s = serialport('COM6', 9600);
 fopen(s);
-set(s, 'BaudRate', 9600)
 set(s, 'terminator', char(37))
-for i = 1:1000
-    temp = fscanf(s);
-    
+emgdata = zeros(100,1000);
+for i = 1:100
+    for j = 1:1000
+        emgdata(i,j) = fscanf(s);
+    end
+end
+fclose(s);
+delete(instrfindall)

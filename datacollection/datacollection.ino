@@ -17,6 +17,7 @@ void loop() {
   }
   n += 1;
   Serial.println("%d[s]",n);
-  if (n == 60)
-    break;
+  if (n == 60) {
+   Serial.println('%'); 
+  }
 }

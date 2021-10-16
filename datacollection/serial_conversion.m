@@ -9,5 +9,6 @@ for i = 1:100
         emgdata(i,j) = fscanf(s);
     end
 end
+xlswrite('emgdata.xls', emgdata);
 fclose(s);
 delete(instrfindall)

@@ -9,6 +9,6 @@ for i = 1:100
         emgdata(i,j) = fscanf(s);
     end
 end
-xlswrite('emgdata.xls', emgdata);
+writematrix('emgdata.csv', emgdata);
 fclose(s);
 delete(instrfindall)

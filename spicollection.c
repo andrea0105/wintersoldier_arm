@@ -17,25 +17,25 @@
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
 
-#define MCP3208_CS 10 /* WiringPi = 10, BCM = 8 */
-#define SPI_CHANNEL 0
-#define SPI_SPEED 1000000
+#define MCP3208_CS 10 /* WiringPi = 10, Pi Pin number = 24 */
+#define SPI_CHANNEL 0 /* Set up the communication channel */
+#define SPI_SPEED 1000000 /* 1MHz */
 
 #define FNAME "Output.txt"
 
-int read_adc(uint8_t ADC_CH)
+int read_adc(uint8_t ADC_CH) /* Function for reading values from MCP3208 */
 {
-	uint8_t buff[3];
+	uint8_t buff[3]; /* Array for collecting the data */
 	int ADC_VAL = 0;
 	buff[0] = 0x06 | ((ADC_CH & 0x07) >> 2);
 	buff[1] = ((ADC_CH & 0x07) << 6);
 	buff[2] = 0x00;
 
-	digitalWrite(MCP3208_CS, 0);
-	wiringPiSPIDataRW(SPI_CHANNEL, buff, 3);
+	digitalWrite(MCP3208_CS, 0); /* Get the Data */
+	wiringPiSPIDataRW(SPI_CHANNEL, buff, 3); /* Putting data to array */
 
-	buff[1] = 0x0f & buff[1];
-	ADC_VAL = (buff[1] << 8) | buff[2];
+	buff[1] = 0x0f & buff[1]; /* masking lower nibble */
+	ADC_VAL = (buff[1] << 8) | buff[2]; /* 12 bits by concatenation */
 
 	digitalWrite(MCP3208_CS, 1);
 	return ADC_VAL;
